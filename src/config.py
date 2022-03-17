@@ -1,3 +1,4 @@
+import os
 from os.path import exists
 
 import dotenv # from dotenv import load_dotenv
