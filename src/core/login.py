@@ -5,8 +5,7 @@ from src.models.database.user import User
 from src.models.dtos.login import LoginDTO
 
 
-def buscar():
-    
+def buscar(): 
     db = database.connect()
     usuarios = db.execute('SELECT id, name, status FROM user ORDER BY name').all()
     
