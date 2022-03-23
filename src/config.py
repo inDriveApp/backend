@@ -26,7 +26,7 @@ def load_config():
     if not exists('../.env'):
         print('\n\033[0m\033[31mERROR', end='')
         print('\033[0m:    Environment file not found\n')
-        uvicorn.Server.shutdown()
+        uvicorn.Server.shutdown()  
     
     dotenv.load_dotenv('../.env')
 

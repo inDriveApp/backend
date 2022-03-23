@@ -7,7 +7,7 @@ from src.models.dtos.login import LoginDTO
 
 def buscar(): 
     db = database.connect()
-    usuarios = db.execute('SELECT id, name, status FROM user ORDER BY name').all()
+    usuarios = db.execute('SELECT id, name, status FROM public.user ORDER BY name').all()
     
     if not usuarios:
         return []
@@ -28,7 +28,7 @@ def buscar():
 def salvar(dto: LoginDTO):    
     db = database.connect()
     usuario = db.execute(
-        'SELECT id, login, password FROM user WHERE login=:login AND password=passwd',
+        'SELECT id, login, password FROM public.user WHERE login=:login AND password=passwd',
         {
             'login': dto.login,
             'passwd': dto.password

@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "main:app",
+                "src.main:init_app",
                 "--no-server-header",
                 "--no-date-header",
                 "--host",

@@ -6,12 +6,12 @@ from src.core import database
 
 
 def init_app():
-    
-    load_config()
-    database.create_db()
 
     app = FastAPI()
+    
+    load_config()
     config_app(app)
+    database.create_db()
     
     msg_server_start(app.description, app.version)
     
