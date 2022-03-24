@@ -9,5 +9,5 @@ class User(ModelBase):
 
     login = Column(String(32), nullable=False)
     name = Column(String(100), nullable=False)
-    password = Column(String(32), nullable=False)
+    password = Column(String(100), nullable=False)
     status = Column(Integer, server_default=text('0'))  # [ Inativo, Ativo ]
