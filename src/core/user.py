@@ -5,7 +5,7 @@ from pydantic import UUID4
 
 from src.core import database
 from src.models.database.user import User
-from src.models.dtos.login import LoginDTO
+from src.models.dtos.user import UserDTO
 
 
 def get_all(): 
@@ -28,7 +28,7 @@ def get_all():
     return retorno
 
 
-def create(dto: LoginDTO):
+def create(dto: UserDTO):
     db = database.connect()
     user = db.execute(
         'SELECT id, name FROM public.user WHERE login=:login',
@@ -48,8 +48,9 @@ def create(dto: LoginDTO):
         'name': dto.name,
         'login': dto.login,
         'password': bcrypt.hashpw(
-            dto.password.encode('utf-8'),
-            bcrypt.gensalt()
+            dto.password.encode(
+                'utf-8'),
+                bcrypt.gensalt()
             ).decode('utf-8', 'ignore'),
         'status': 1
     }
