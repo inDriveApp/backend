@@ -34,7 +34,7 @@ def connect():
     db_uri = config_db()
     
     if APP_NAME:
-        db_uri += f"?application_name={APP_NAME}"
+        db_uri += f'?application_name={APP_NAME}'
     
     engine = create_engine(db_uri, echo=False)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

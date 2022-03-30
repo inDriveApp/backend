@@ -4,7 +4,7 @@ from src.models.dtos.login import LoginDTO
 from src.core import login
 
 
-router = APIRouter(prefix="/api/login")
+router = APIRouter(prefix='/api/login')
 
 
 @router.post('')

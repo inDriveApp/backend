@@ -20,7 +20,7 @@ def create(dto: UserDTO):
     if user:
         raise HTTPException(
             status_code=400,
-            detail="Erro: Já existe este usuario no sistema"
+            detail='Erro: Já existe este usuario no sistema'
         )
 
     user_dict = {
@@ -46,7 +46,7 @@ def create(dto: UserDTO):
         print(e)
         raise HTTPException(
             status_code=400,
-            detail="Erro: Não foi possivel salvar o usuario."
+            detail='Erro: Não foi possivel salvar o usuario.'
         )
     
     retorno = {

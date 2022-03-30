@@ -14,7 +14,7 @@ def delete(id: UUID4):
     if not user:
         raise HTTPException(
             status_code=400,
-            detail="Erro: Usuário não existe"
+            detail='Erro: Usuário não existe'
         )
 
     try:
@@ -28,7 +28,7 @@ def delete(id: UUID4):
         print(e)
         raise HTTPException(
             status_code=400,
-            detail="Erro: Não foi possivel deletar o usuario."
+            detail='Erro: Não foi possivel deletar o usuario.'
         )
     
     return 'Usuário removido com sucesso!'

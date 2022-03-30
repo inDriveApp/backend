@@ -1,7 +1,7 @@
 import os
 from os.path import exists
 
-import dotenv # from dotenv import load_dotenv
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -10,14 +10,18 @@ from src.version import __version__
 
 
 def msg_server_start(msg, versao):
-    spaces=len(msg) - len(versao) - 5
+    
+    spaces = len(msg) - len(versao) - 5
+    if spaces < 0:
+        spaces = 2
+    
     print(
         '\n', '#' * (len(msg) + 6),
         '\n## ', ' ' * len(msg), ' ##',
         '\n## ', msg, ' ##',
         '\n## ', ' ' * len(msg), ' ##',
-        '\n', '#' * (len(msg) + 6), '\n',
-        ' ' * spaces, 'version: ', versao, '\n',
+        '\n', '#' * (len(msg) + 6),
+        '\n', ' ' * spaces, '', versao, '\n',
         sep=''
     )
 
@@ -28,25 +32,24 @@ def load_config():
         print('\033[0m:    Environment file not found\n')
         uvicorn.Server.shutdown()  
     
-    dotenv.load_dotenv('../.env')
+    load_dotenv('../.env')
 
 
 def config_app(app):
-    methods = ["POST", "GET", "PUT", "DELETE", "PATCH"]
+    methods = ['POST', 'GET', 'PUT', 'DELETE', 'PATCH']
     
     app.title = 'InDrive'
     app.version = __version__
     app.description = 'InDrive app'
     
-    app.router.redirect_slashes = False  # TODO Verificar comportamento padrão
+    app.router.redirect_slashes = False  # Padrão = True
     
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=['*'],
         allow_credentials=True,
         allow_methods=methods,
         # allow_headers=headers,
-        expose_headers="x-version"
     )
     
     database.APP_NAME = app.title

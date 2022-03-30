@@ -17,8 +17,8 @@ def init_app():
     
     routers.init_app(app)
     
-    @app.get("/")
+    @app.get('/')
     async def root():
-        return {"message": "Hello Bigger Applications!"}
+        return {'message': 'Hello Bigger Applications!'}
 
     return app
