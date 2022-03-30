@@ -5,7 +5,7 @@ from src.models.dtos.user import UserDTO
 from src.core import user
 
 
-router = APIRouter(prefix="/api/user")
+router = APIRouter(prefix='/api/user')
 
 
 @router.get('')
