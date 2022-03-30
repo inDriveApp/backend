@@ -20,6 +20,12 @@ def get(dto: UserDTO, req: Request, res: Response):
     return user.create(dto)
 
 
+@router.patch('/{id}')
+def get(id: UUID4, dto: UserDTO, req: Request, res: Response):
+
+    return user.update(id, dto)
+
+
 @router.delete('/{id}')
 def get(id: UUID4, req: Request, res: Response):
 

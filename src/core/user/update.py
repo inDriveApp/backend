@@ -5,30 +5,10 @@ from pydantic import UUID4
 
 from src.core import database
 from src.models.database.user import User
-from src.models.dtos.user import UserDTO
+from src.models.dtos.user import UserDTO  
 
 
-def get_all(): 
-    db = database.connect()
-    usuarios = db.execute('SELECT id, name, status FROM public.user ORDER BY name').all()
-    
-    if not usuarios:
-        return []
-    
-    retorno = []
-    for usuario in usuarios:
-        usr = {
-            'id': usuario['id'],
-            'name': usuario['name'],
-            'status': usuario['status']
-        }
-        
-        retorno.append(usr)
-    
-    return retorno
-
-
-def create(dto: UserDTO):
+def update(id: UUID4, dto: UserDTO):
     db = database.connect()
     user = db.execute(
         'SELECT id, name FROM public.user WHERE login=:login',
@@ -73,7 +53,7 @@ def create(dto: UserDTO):
         'id': user.id
     }
     
-    return retorno    
+    return retorno
 
 
 def delete(id: UUID4):
