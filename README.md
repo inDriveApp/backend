@@ -5,19 +5,13 @@
 * Dependencias:
   * graphviz
 
-<br>
-
 ```bash
 pyreverse -o png -d docs/assets -ASmy src
 ```
 
 ---
 
-<br>
-
 ## **Build**
-
-<br>
 
 ### Fora do docker
 
