@@ -2,6 +2,7 @@ fastapi
 psycopg2-binary
 PyJWT
 python-dotenv
+python-multipart
 SQLAlchemy
 uvicorn
 bcrypt

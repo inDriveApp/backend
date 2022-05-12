@@ -7,3 +7,8 @@ class UserDTO(DTOBase):
     name: str
     login: str
     password: str
+
+
+class SimpleUserDTO(DTOBase):
+    
+    login: str
