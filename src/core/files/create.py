@@ -2,8 +2,6 @@ from typing import List
 import aiofiles
 from fastapi import File, HTTPException, Request, UploadFile
 
-from src.models.dtos.file import FileDTO
-
 
 async def create(req: Request, files: List[UploadFile]):
 
