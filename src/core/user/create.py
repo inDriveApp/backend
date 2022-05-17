@@ -1,4 +1,6 @@
+from os import mkdir
 import uuid
+
 import bcrypt
 from fastapi import HTTPException
 from pydantic import UUID4
@@ -41,9 +43,12 @@ def create(dto: UserDTO):
         db.add(user)
         db.commit()
         db.refresh(user)
+        
+        mkdir(f'/home/{dto.login}')
     except Exception as e:
         db.rollback()
         print(e)
+        
         raise HTTPException(
             status_code=400,
             detail='Erro: Não foi possivel salvar o usuario.'
