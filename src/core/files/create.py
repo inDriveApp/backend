@@ -16,7 +16,7 @@ async def create(req: Request, files: List[UploadFile]):
     user = req.headers['user']
     
     for file in files:
-        destin_file = f'/home/{user}/Música/' + file.filename
+        destin_file = f'/home/{user}/' + file.filename
         
         async with aiofiles.open(destin_file, 'wb') as out_file:
             while content := await file.read(1024):

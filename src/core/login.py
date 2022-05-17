@@ -19,7 +19,7 @@ def create(dto: LoginDTO):
     if not usuario:
         raise HTTPException(
             status_code=400,
-            detail='Erro: Usuario ou Senha incorretos'
+            detail='Usuario ou Senha incorretos'
         )
     
     check_password = bcrypt.checkpw(
@@ -30,7 +30,7 @@ def create(dto: LoginDTO):
     if not check_password:
         raise HTTPException(
             status_code=400,
-            detail='Erro: Usuario ou Senha incorretos'
+            detail='Usuario ou Senha incorretos'
         )
     
     retorno = {
