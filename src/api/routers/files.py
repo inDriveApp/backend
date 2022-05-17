@@ -1,6 +1,5 @@
-import aiofiles
-from typing import List, Optional
-from fastapi import APIRouter, File, HTTPException, Request, Response, UploadFile
+from typing import List
+from fastapi import APIRouter, HTTPException, Request, Response, UploadFile
 
 from src.core import files
 from src.models.dtos.user import SimpleUserDTO
@@ -11,9 +10,9 @@ router = APIRouter(prefix='/api/files')
 
 
 @router.get('')
-def get_all(dto: SimpleUserDTO, req: Request, res: Response):
+def get_all(req: Request, res: Response):
     
-    return files.get_all(dto.login)
+    return files.get_all(req)
 
 
 @router.post('')
