@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 from .dto_base import DTOBase
 
@@ -6,5 +7,4 @@ from .dto_base import DTOBase
 class FileDTO(DTOBase):
     
     name: str
-    size: float
-    uploaded: datetime
+    path: Optional[str]
