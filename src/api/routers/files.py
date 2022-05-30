@@ -16,15 +16,15 @@ def get_all(user:str, req: Request, res: Response):
 
 
 @router.get('/download')
-def get(dto: FileDTO, req: Request, res: Response):
+def get(user:str, dto: FileDTO, req: Request, res: Response):
     
     return files.get(dto)
 
 
-@router.post('')
-async def post(req: Request, file: List[UploadFile]):
+@router.post('/{user}')
+async def post(user:str, req: Request, file: List[UploadFile]):
     
-    return await files.create(req, file)
+    return await files.create(user, req, file)
 
 
 @router.delete('')
