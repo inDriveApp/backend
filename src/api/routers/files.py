@@ -9,10 +9,10 @@ from src.models.dtos.user import SimpleUserDTO
 router = APIRouter(prefix='/api/files')
 
 
-@router.get('')
-def get_all(req: Request, res: Response):
+@router.get('/{user}')
+def get_all(user:str, req: Request, res: Response):
     
-    return files.get_all(req)
+    return files.get_all(user, req)
 
 
 @router.get('/download')

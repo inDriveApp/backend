@@ -6,14 +6,12 @@ from fastapi import HTTPException, Request
 from src.utils.functions import convert_size
 
 
-def get_all(req: Request):
-    if 'user' not in req.headers:
+def get_all(user:str, req: Request):
+    if not user:
         raise HTTPException(
             status_code=400,
             detail='Erro: Usuario não informado'
         )
-    
-    user = req.headers['user']
     
     root_path = f'/home/{user}'
     files_name = os.listdir(root_path)
