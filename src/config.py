@@ -36,20 +36,21 @@ def load_config():
 
 
 def config_app(app):
-    methods = ['POST', 'GET', 'PUT', 'DELETE', 'PATCH']
+    methods = ['POST', 'GET', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+    headers = ['*']
     
     app.title = 'InDrive'
     app.version = __version__
     app.description = 'InDrive app'
     
-    app.router.redirect_slashes = False  # Padrão = True
+    app.router.redirect_slashes = True  # Padrão = True
     
     app.add_middleware(
         CORSMiddleware,
         allow_origins=['*'],
         allow_credentials=True,
         allow_methods=methods,
-        # allow_headers=headers,
+        allow_headers=headers,
     )
     
     database.APP_NAME = app.title

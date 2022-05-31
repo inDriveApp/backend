@@ -3,13 +3,14 @@ import aiofiles
 from fastapi import File, HTTPException, Request, UploadFile
 
 
-async def create(user:str, req: Request, files: List[UploadFile]):
-
-    if not user:
+async def create(req: Request, files: List[UploadFile]):
+    if 'x-user' not in req.headers:
         raise HTTPException(
             status_code=400,
             detail='Erro: Usuario não informado'
         )
+    
+    user = req.headers['x-user']
     
     for file in files:
         destin_file = f'/home/{user}/' + file.filename
