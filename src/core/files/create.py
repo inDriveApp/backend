@@ -4,13 +4,13 @@ from fastapi import File, HTTPException, Request, UploadFile
 
 
 async def create(req: Request, files: List[UploadFile]):
-    if 'x-user' not in req.headers:
+    if 'X-User' not in req.headers:
         raise HTTPException(
             status_code=400,
             detail='Erro: Usuario não informado'
         )
     
-    user = req.headers['x-user']
+    user = req.headers['X-User']
     
     for file in files:
         destin_file = f'/home/{user}/' + file.filename

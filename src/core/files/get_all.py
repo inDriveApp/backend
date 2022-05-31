@@ -7,13 +7,13 @@ from src.utils.functions import convert_size
 
 
 def get_all(req: Request):
-    if 'x-user' not in req.headers:
+    if 'X-User' not in req.headers:
         raise HTTPException(
             status_code=400,
             detail='Erro: Usuario não informado'
         )
     
-    user = req.headers['x-user']
+    user = req.headers['X-User']
     
     root_path = f'/home/{user}'
     files_name = os.listdir(root_path)

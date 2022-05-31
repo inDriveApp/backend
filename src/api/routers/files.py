@@ -9,11 +9,6 @@ from src.models.dtos.user import SimpleUserDTO
 router = APIRouter(prefix='/api/files')
 
 
-@router.options('')
-def options(req: Request, res: Response):
-    return ''
-
-
 @router.get('')
 def get_all(req: Request, res: Response):
     
