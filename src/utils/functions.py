@@ -22,7 +22,7 @@ def validate_file_request(req: Request):
         raise HTTPException(
             status_code=400,
             detail='Usuario não informado'
-    )
+        )
     
     user = req.headers['X-User']
     root_path = f'/home/{user}'

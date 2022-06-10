@@ -3,7 +3,6 @@ import uuid
 
 import bcrypt
 from fastapi import HTTPException
-from pydantic import UUID4
 
 from src.core import database
 from src.models.database.user import User

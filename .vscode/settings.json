@@ -9,5 +9,17 @@
         "**/.venv": true,
         "**/.pytest_cache": true,
         "**/__pycache__": true
-    }
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "docker postgres",
+            "database": "inDrive",
+            "password": "inDrive",
+            "username": "inDrive"
+        }
+    ]
 }

@@ -10,14 +10,13 @@ from src.utils.functions import validate_file_request
 def get(dto: FileDTO, req: Request):
     root_path = validate_file_request(req)
     
-    if dto.path and exists(dto.path):
-        path = f'{dto.path}'
-    elif exists(root_path):
-        path = f'{root_path}/{dto.name}'
-    else:
+    path = dto.path or f'{root_path}/{dto.name}'
+    
+    if path and not exists(path):
         raise HTTPException(
             status_code=400,
-            detail='Usuario informado não existe'
+            detail='Arquivo solicitado não existe'
         )
+    
     
     return FileResponse(path=path, filename=dto.name)
