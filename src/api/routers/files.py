@@ -30,4 +30,4 @@ async def post(req: Request, file: List[UploadFile]):
 @router.delete('')
 def delete(dto: FileDTO, req: Request, res: Response):
     
-    return files.delete(dto)
+    return files.delete(dto, req)
