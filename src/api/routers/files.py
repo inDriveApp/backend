@@ -18,7 +18,7 @@ def get_all(req: Request, res: Response):
 @router.get('/download')
 def get(dto: FileDTO, req: Request, res: Response):
     
-    return files.get(dto)
+    return files.get(dto, req)
 
 
 @router.post('')

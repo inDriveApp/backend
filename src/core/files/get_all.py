@@ -1,34 +1,25 @@
-import os
+from os import listdir, path
 from datetime import datetime
 
 from fastapi import HTTPException, Request
 
-from src.utils.functions import convert_size
+from src.utils.functions import convert_size, validate_file_request
 
 
 def get_all(req: Request):
-    if 'X-User' not in req.headers:
-        raise HTTPException(
-            status_code=400,
-            detail='Erro: Usuario não informado'
-        )
-    
-    user = req.headers['X-User']
-    
-    root_path = f'/home/{user}'
-    files_name = os.listdir(root_path)
+    root_path = validate_file_request(req)
+    files_name = listdir(root_path)
     
     retorno = []
     for file in files_name:
-        
         f = {
             'name': file,
-            'size': convert_size(os.path.getsize(f'{root_path}/{file}')),
-            'uploaded': int(os.path.getmtime(f'{root_path}/{file}')),
+            'size': convert_size(path.getsize(f'{root_path}/{file}')),
+            'uploaded': int(path.getmtime(f'{root_path}/{file}')),
             'extension': None
         }
         
-        if os.path.isdir(f'{root_path}/{file}'):
+        if path.isdir(f'{root_path}/{file}'):
             f['extension'] = 'directory'
         elif '.' in file:
             extension = file.split('.')
