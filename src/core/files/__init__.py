@@ -1,3 +1,4 @@
+from . import share
 from .get import get
 from .get_all import get_all
 from .create import create
@@ -8,5 +9,7 @@ __all__ = [
     'get',
     'get_all',
     'create',
-    'delete'
+    'delete',
+    
+    'share.get_all'
 ]

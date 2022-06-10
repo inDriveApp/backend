@@ -15,12 +15,6 @@ def get_all(req: Request, res: Response):
     return files.get_all(req)
 
 
-@router.get('/download')
-def get(dto: FileDTO, req: Request, res: Response):
-    
-    return files.get(dto, req)
-
-
 @router.post('')
 async def post(req: Request, file: List[UploadFile]):
     
@@ -31,3 +25,21 @@ async def post(req: Request, file: List[UploadFile]):
 def delete(dto: FileDTO, req: Request, res: Response):
     
     return files.delete(dto, req)
+
+
+@router.get('/download')
+def get(dto: FileDTO, req: Request, res: Response):
+    
+    return files.get(dto, req)
+
+
+@router.get('/share')
+def get(dto: FileDTO, req: Request, res: Response):
+    
+    return files.share.get_all(dto, req)
+
+
+@router.post('/share')
+def post(dto: FileDTO, req: Request):
+    
+    return files.share.create(dto, req)

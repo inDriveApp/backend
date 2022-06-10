@@ -7,7 +7,6 @@ from src.models.dtos.file import FileDTO
 from src.utils.functions import validate_file_request
 
 
-# TODO
 def delete(dto: FileDTO, req: Request):
     root_path = validate_file_request(req)
     
