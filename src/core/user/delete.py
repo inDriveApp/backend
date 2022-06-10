@@ -26,7 +26,7 @@ def delete(id: UUID4):
         )
         db.commit()
         
-        rmtree(f"/home/{user['login']}")
+        rmtree(f'/home/{user["id"]}')
     except Exception as e:
         db.rollback()
         print(e)

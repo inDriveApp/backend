@@ -44,7 +44,7 @@ def create(dto: UserDTO):
         db.commit()
         db.refresh(user)
         
-        mkdir(f'/home/{dto.login}')
+        mkdir(f'/home/{user_dict["id"]}')
     except Exception as e:
         db.rollback()
         print(e)
