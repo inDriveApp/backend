@@ -36,7 +36,7 @@ def get(dto: FileDTO, req: Request, res: Response):
 @router.get('/share')
 def get(dto: FileDTO, req: Request, res: Response):
     
-    return files.share.get_all(dto, req)
+    return files.share.get_all(req)
 
 
 @router.post('/share')
