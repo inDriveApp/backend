@@ -1,13 +1,25 @@
+from os.path import exists
 from typing import List
 
 import aiofiles
-from fastapi import Request, UploadFile
-
-from src.utils.functions import validate_file_request
+from fastapi import HTTPException, Request, UploadFile
 
 
-async def create(req: Request, files: List[UploadFile]):
-    root_path = validate_file_request(req)
+async def create(files: List[UploadFile], req: Request):
+    if 'X-User' not in req.headers:
+        raise HTTPException(
+            status_code=400,
+            detail='Usuario não informado'
+        )
+    
+    user = req.headers['X-User']
+    root_path = f'/home/{user}'
+
+    if not exists(root_path):
+        raise HTTPException(
+            status_code=400,
+            detail='Usuario informado não existe'
+        )
     
     for file in files:
         destin_file = f'{root_path}/{file.filename}'

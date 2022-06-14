@@ -6,17 +6,20 @@ from fastapi import HTTPException, Request
 from src.core import database
 from src.models.dtos.file import FileDTO
 from src.models.database.share import Share
-from src.utils.functions import validate_file_request
 
 
-def create(dto: FileDTO ,req: Request):
+def create(dto: FileDTO, req: Request):
     if not dto.user:
         raise HTTPException(
             status_code=400,
             detail='Usuario não informado'
         )
     
-    validate_file_request(req)
+    if 'X-User' not in req.headers:
+        raise HTTPException(
+            status_code=400,
+            detail='Usuario não informado'
+        )
     
     db = database.connect()
     

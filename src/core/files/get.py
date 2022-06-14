@@ -4,13 +4,18 @@ from fastapi import HTTPException, Request
 from fastapi.responses import FileResponse
 
 from src.models.dtos.file import FileDTO
-from src.utils.functions import validate_file_request
 
 
-def get(dto: FileDTO, req: Request):
-    root_path = validate_file_request(req)
+def get(file: str, req: Request):
+    if 'X-Owner' not in req.headers:
+        raise HTTPException(
+            status_code=400,
+            detail='Proprietario do arquivo não informado'
+        )
     
-    path =  f'/home/{dto.path}' if dto.path else f'{root_path}/{dto.name}'
+    owner = req.headers['X-Owner']
+    
+    path = f'/home/{owner}/{file}'
     
     if path and not exists(path):
         raise HTTPException(
@@ -18,5 +23,4 @@ def get(dto: FileDTO, req: Request):
             detail='Arquivo solicitado não existe'
         )
     
-    
-    return FileResponse(path=path, filename=dto.name)
+    return FileResponse(path=path, filename=file)

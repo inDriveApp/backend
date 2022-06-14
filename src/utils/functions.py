@@ -15,22 +15,3 @@ def convert_size(size_bytes):
    s = round(size_bytes / p, 2)
    
    return "%s %s" % (s, size_name[i])
-
-
-def validate_file_request(req: Request):
-    if 'X-User' not in req.headers:
-        raise HTTPException(
-            status_code=400,
-            detail='Usuario não informado'
-        )
-    
-    user = req.headers['X-User']
-    root_path = f'/home/{user}'
-
-    if not exists(root_path):
-        raise HTTPException(
-            status_code=400,
-            detail='Usuario informado não existe'
-        )
-
-    return root_path

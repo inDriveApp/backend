@@ -10,31 +10,31 @@ router = APIRouter(prefix='/api/files')
 
 
 @router.get('')
-def get_all(req: Request, res: Response):
+def get_all(req: Request):
     
     return files.get_all(req)
 
 
 @router.post('')
-async def post(req: Request, file: List[UploadFile]):
+async def post(file: List[UploadFile], req: Request):
     
-    return await files.create(req, file)
+    return await files.create(file, req)
 
 
 @router.delete('')
-def delete(dto: FileDTO, req: Request, res: Response):
+def delete(dto: FileDTO, req: Request):
     
     return files.delete(dto, req)
 
 
-@router.get('/download')
-def get(dto: FileDTO, req: Request, res: Response):
+@router.get('/download/{file}')
+def get(file: str, req: Request):
     
-    return files.get(dto, req)
+    return files.get(file, req)
 
 
 @router.get('/share')
-def get(req: Request, res: Response):
+def get(req: Request):
     
     return files.share.get_all(req)
 
