@@ -1,8 +1,8 @@
 from os import path, remove
-from shutil import rmtree
 
 from fastapi import HTTPException, Request
 
+from src.core import database
 from src.models.dtos.file import FileDTO
 
 
@@ -29,5 +29,19 @@ def delete(dto: FileDTO, req: Request):
         )
     
     remove(f'{root_path}/{dto.name}')
+    
+    db = database.connect()
+    
+    db.execute(
+        """UPDATE public.share
+           SET status = 0
+           WHERE owner = :user
+                 AND status = 1
+                 AND file = :file""",
+        {
+            'user': req.headers['X-User'],
+            'file': dto.name
+        }
+    )
     
     return 'OK'
