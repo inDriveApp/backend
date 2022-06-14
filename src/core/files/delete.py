@@ -39,9 +39,10 @@ def delete(dto: FileDTO, req: Request):
                  AND status = 1
                  AND file = :file""",
         {
-            'user': req.headers['X-User'],
+            'user': user,
             'file': dto.name
         }
     )
+    db.commit()
     
     return 'OK'
