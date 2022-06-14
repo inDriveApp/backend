@@ -14,7 +14,7 @@ def get_all(req: Request):
     for file in files_name:
         f = {
             'name': file,
-            'path': f'{root_path}/{file}',
+            'path': f'{req.headers["X-User"]}/{file}',
             'size': convert_size(path.getsize(f'{root_path}/{file}')),
             'uploaded': int(path.getmtime(f'{root_path}/{file}')),
             'extension': None

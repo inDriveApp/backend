@@ -10,7 +10,7 @@ from src.utils.functions import validate_file_request
 def get(dto: FileDTO, req: Request):
     root_path = validate_file_request(req)
     
-    path = dto.path or f'{root_path}/{dto.name}'
+    path =  f'/home/{dto.path}' or f'{root_path}/{dto.name}'
     
     if path and not exists(path):
         raise HTTPException(
